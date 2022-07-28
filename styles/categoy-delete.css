@@ -1,0 +1,37 @@
+.category-delete {
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background-color: #5ca5a5;
+  border-radius: 0 4px 4px 0;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.category-delete:hover {
+  background: #2b3939;
+}
+
+.category-delete:before,
+.category-delete:after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 3px;
+  background-color: white;
+  top: 15px;
+}
+
+.category-delete:before {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  transform: rotate(45deg);
+  left: 8px;
+}
+.category-delete:after {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  right: 8px;
+}

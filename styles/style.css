@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 330px;
+  font-family: "League Spartan", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  background-color: #effafa;
+  -webkit-font-smoothing: antialiased;
+}
+
+.--white-rounded {
+  background-color: #ffffff;
+  box-shadow: 0px 15px 20px -5px rgba(13, 113, 130, 0.15);
+  border-radius: 5px;
+}
+
+.--centered-separated {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.--display-none {
+  display: none;
+}

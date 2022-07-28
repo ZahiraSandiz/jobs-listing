@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="styles/style.css" rel="stylesheet" type="text/css" />
+    <link
+      href="styles/container-content.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="styles/header.css" rel="stylesheet" type="text/css" />
+    <link href="styles/filter.css" rel="stylesheet" type="text/css" />
+    <link href="styles/category.css" rel="stylesheet" type="text/css" />
+    <link href="styles/categoy-delete.css" rel="stylesheet" type="text/css" />
+    <link href="styles/job-card.css" rel="stylesheet" type="text/css" />
+    <link href="styles/featured-messge.css" rel="stylesheet" type="text/css" />
+
+    <title>Jobs Listing</title>
+  </head>
+  <body>
+    <header class="header"></header>
+
+    <div class="container-content">
+      <div class="filter --white-rounded --centered-separated --display-none">
+        <div class="categories-list filter_categories-list"></div>
+        <button class="filter_button-clear">Clear</button>
+      </div>
+
+      <main class="container-cards">
+        <article class="job-card --white-rounded --featured-card">
+          <img
+            class="job-card__image-company"
+            src="assets/images/photosnap.svg"
+            alt="Company logo"
+          />
+          <section class="job-card__information">
+            <div class="--centered-separated">
+              <p class="job-card__company-name --centered-separated">
+                Photosnap
+              </p>
+              <div class="job-card__company-featured --centered-separated">
+                <div class="featured-message">NEW!</div>
+                <div class="featured-message featured-message--featured">
+                  FEATURED
+                </div>
+              </div>
+            </div>
+            <div>
+              <p class="job-card__role">Senior Frontend Developer</p>
+            </div>
+            <div class="job-card__more-information --centered-separated">
+              <span class="more-information__upload-day">1d ago</span>
+              <span class="more-information__point"></span>
+              <span class="more-information__working-hours">Full Time</span>
+              <span class="more-information__point"></span>
+              <span class="more-information__country">USA only</span>
+            </div>
+          </section>
+
+          <div class="job-card__line"></div>
+
+          <section class="categories-list job-card__categories-list">
+            <span class="category job-card__category" data-category="frontend"
+              >Frontend</span
+            >
+            <span class="category job-card__category">Senior</span>
+            <span class="category job-card__category">HTML</span>
+            <span class="category job-card__category">CSS</span>
+            <span class="category job-card__category">JavaScript</span>
+          </section>
+        </article>
+
+        <article class="job-card --white-rounded --featured-card">
+          <img
+            class="job-card__image-company"
+            src="assets/images/manage.svg"
+            alt="Company logo"
+          />
+          <section class="job-card__information">
+            <div class="--centered-separated">
+              <p class="job-card__company-name --centered-separated">Manage</p>
+              <div class="job-card__company-featured --centered-separated">
+                <div class="featured-message">NEW!</div>
+                <div class="featured-message featured-message--featured">
+                  FEATURED
+                </div>
+              </div>
+            </div>
+            <div>
+              <p class="job-card__role">Fullstack Developer</p>
+            </div>
+            <div class="job-card__more-information --centered-separated">
+              <span class="more-information__upload-day">1d ago</span>
+              <span class="more-information__point"></span>
+              <span class="more-information__working-hours">Part Time</span>
+              <span class="more-information__point"></span>
+              <span class="more-information__country">Remote</span>
+            </div>
+          </section>
+
+          <div class="job-card__line"></div>
+
+          <section class="categories-list job-card__categories-list">
+            <span class="category job-card__category">Fullstack</span>
+            <span class="category job-card__category">Midweight</span>
+            <span class="category job-card__category">Python</span>
+            <span class="category job-card__category" data-category="react"
+              >React</span
+            >
+          </section>
+        </article>
+
+        <article class="job-card --white-rounded">
+          <img
+            class="job-card__image-company"
+            src="assets/images/account.svg"
+            alt="Company logo"
+          />
+          <section class="job-card__information">
+            <div class="--centered-separated">
+              <p class="job-card__company-name --centered-separated">Account</p>
+              <div class="job-card__company-featured --centered-separated">
+                <div class="featured-message">NEW!</div>
+              </div>
+            </div>
+            <div>
+              <p class="job-card__role">Junior Frontend Developer</p>
+            </div>
+            <div class="job-card__more-information --centered-separated">
+              <span class="more-information__upload-day">2d ago</span>
+              <span class="more-information__point"></span>
+              <span class="more-information__working-hours">Part Time</span>
+              <span class="more-information__point"></span>
+              <span class="more-information__country">USA only</span>
+            </div>
+          </section>
+
+          <div class="job-card__line"></div>
+
+          <section class="categories-list job-card__categories-list">
+            <span class="category job-card__category" data-category="frontend"
+              >Frontend</span
+            >
+            <span class="category job-card__category" data-category="junior"
+              >Junior</span
+            >
+            <span class="category job-card__category" data-category="react"
+              >React</span
+            >
+            <span class="category job-card__category" data-category="sass"
+              >Sass</span
+            >
+            <span class="category job-card__category" data-category="javascript"
+              >JavaScript</span
+            >
+          </section>
+        </article>
+      </main>
+    </div>
+
+    <script src="./js/filter.js"></script>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+.container-content {
+  padding: 0 6.4%;
+  margin-bottom: 34px;
+}
+
+@media (min-width: 1024px) {
+  .container-content {
+    padding: 0 11.46%;
+    margin-bottom: 120px;
+  }
+}

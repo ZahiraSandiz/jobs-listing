@@ -1,0 +1,15 @@
+.featured-message {
+  user-select: none;
+  background-color: #5ca5a5;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 14px;
+  letter-spacing: -0.107692px;
+  color: #effafa;
+  padding: 7px 8px 3px;
+  border-radius: 12px;
+}
+
+.featured-message--featured {
+  background-color: #2b3939;
+}

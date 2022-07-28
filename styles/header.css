@@ -1,0 +1,16 @@
+.header {
+  height: 156px;
+  background-color: #5ca5a5;
+  background-image: url("../assets/images/bg-header-mobile.svg");
+  animation: 10s linear infinite alternate none running header;
+}
+
+@keyframes header {
+  0% {
+    background-position: 50% 0%;
+  }
+
+  100% {
+    background-position: 100% 0%;
+  }
+}
