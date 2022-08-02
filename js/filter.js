@@ -34,7 +34,7 @@ const crearElementoBarraFiltros = (textoCategoria) => {
   padreCategoria.append(hijoTextCategoria, hijoDeleteCategoria);
 
   agregarHandlerDeleteCategoria(hijoDeleteCategoria, textoCategoria);
-  filtro(textoCategoria); ///_____________________/////////////////////////////////
+  filtrarElementos();
 };
 
 function agregarHandlerDeleteCategoria(elemento, textoCategoria) {
@@ -47,6 +47,8 @@ function agregarHandlerDeleteCategoria(elemento, textoCategoria) {
     }
 
     borrarEstiloCategoriaSeleccionada(textoCategoria);
+
+    filtrarElementos();
   });
 }
 
@@ -109,26 +111,34 @@ botonClearFiltros.addEventListener("click", () => {
   }
 });
 
-const filtro = (textoCategoria) => {
-  for (const contenedorCategoriaCard of contenedoresCategoriasCards) {
-    debugger;
-    const hijosActuales = contenedorCategoriaCard.children;
-    let hayCoincidencia = false;
+const filtrarElementos = () => {
+  const categoriasFiltro = document.querySelectorAll(".filter__category");
+  const contenedoresCategoriasCards = document.querySelectorAll(
+    ".job-card__categories-list"
+  );
 
-    for (hijoActual of hijosActuales) {
-      if (hijoActual.textContent === textoCategoria) {
-        hayCoincidencia = true;
-        console.log("¡¡¡¡Hay hay coincidencia!!!!!!");
-      } else {
-        console.log("No hay hay coincidencia");
-      }
+  if (categoriasFiltro.length === 0) {
+    for (const contenedorActual of contenedoresCategoriasCards) {
+      contenedorActual.parentElement.classList.remove("--display-none");
     }
+  } else {
+    for (const categoriaFiltro of categoriasFiltro) {
+      for (const contenedorActual of contenedoresCategoriasCards) {
+        console.log(contenedorActual);
+        let hayCoincidencia = false;
+        const categorias = contenedorActual.children;
 
-    if (hayCoincidencia === false) {
-      const padreContenedorActual = contenedorCategoriaCard.parentElement;
-      padreContenedorActual.classList.add("--display-none");
+        for (const categoria of categorias) {
+          if (categoria.textContent === categoriaFiltro.textContent) {
+            hayCoincidencia = true;
+          }
+        }
+
+        if (hayCoincidencia === false) {
+          contenedorActual.parentElement.classList.add("--display-none");
+        } else {
+        }
+      }
     }
   }
 };
-
-// cuando clickee la X o cuando toque 'close' tengo que deshacer toda esta función de filtro
