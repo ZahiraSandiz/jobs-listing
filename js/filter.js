@@ -1,143 +1,138 @@
-const contenedoresCategoriasCards = document.querySelectorAll(
-  ".job-card__categories-list"
-);
-const categoriasCards = document.querySelectorAll(".job-card__category");
+const categories = document.querySelectorAll(".job-card__category");
 
-const barraFiltros = document.querySelector(".filter");
-const contenedorCategoriasBarra = document.querySelector(
+const filtersBar = document.querySelector(".filter");
+
+const containerCategoriesBar = document.querySelector(
   ".filter_categories-list"
 );
-const botonClearFiltros = document.querySelector(".filter_button-clear");
 
-const displayBarraFiltros = () => {
+const clearFiltersButton = document.querySelector(".filter_button-clear");
+
+const displayFiltersBar = () => {
   const displayNoneBarraFiltros =
-    barraFiltros.classList.contains("--display-none");
+    filtersBar.classList.contains("--display-none");
 
   if (displayNoneBarraFiltros === true) {
-    barraFiltros.classList.remove("--display-none");
+    filtersBar.classList.remove("--display-none");
   }
 };
 
-const crearElementoBarraFiltros = (textoCategoria) => {
-  const padreCategoria = document.createElement("div");
-  padreCategoria.classList.add("filter__category");
+const addElementToFiltersBar = (textCategory) => {
+  const parentCategory = document.createElement("div");
+  parentCategory.classList.add("filter__category");
 
-  const hijoTextCategoria = document.createElement("span");
-  hijoTextCategoria.classList.add("category");
-  hijoTextCategoria.classList.add("category-selected");
-  hijoTextCategoria.innerText = textoCategoria;
+  const childTextCategory = document.createElement("span");
+  childTextCategory.classList.add("category");
+  childTextCategory.classList.add("category-selected");
+  childTextCategory.innerText = textCategory;
 
-  const hijoDeleteCategoria = document.createElement("button");
-  hijoDeleteCategoria.classList.add("category-delete");
+  const childDeleteCategory = document.createElement("button");
+  childDeleteCategory.classList.add("category-delete");
 
-  contenedorCategoriasBarra.append(padreCategoria);
-  padreCategoria.append(hijoTextCategoria, hijoDeleteCategoria);
+  containerCategoriesBar.append(parentCategory);
+  parentCategory.append(childTextCategory, childDeleteCategory);
 
-  agregarHandlerDeleteCategoria(hijoDeleteCategoria, textoCategoria);
-  filtrarElementos();
+  addHandlerDeleteCategory(childDeleteCategory, textCategory);
+  filterElements();
 };
 
-function agregarHandlerDeleteCategoria(elemento, textoCategoria) {
-  elemento.addEventListener("click", () => {
-    const padreBoton = elemento.parentElement;
-    contenedorCategoriasBarra.removeChild(padreBoton);
+function addHandlerDeleteCategory(element, textCategory) {
+  element.addEventListener("click", () => {
+    const parentButton = element.parentElement;
+    containerCategoriesBar.removeChild(parentButton);
 
-    if (contenedorCategoriasBarra.childElementCount === 0) {
-      barraFiltros.classList.add("--display-none");
+    if (containerCategoriesBar.childElementCount === 0) {
+      filtersBar.classList.add("--display-none");
     }
 
-    borrarEstiloCategoriaSeleccionada(textoCategoria);
+    deleteStyleSelectedCategory(textCategory);
 
-    filtrarElementos();
+    filterElements();
   });
 }
 
-const evaluacionNoRepetirCategorias = (textoCategoria) => {
-  const categoriasSeleccionadas =
-    document.querySelectorAll(".category-selected");
+const checkIfCategoriesExist = (textCategory) => {
+  const selectedCategories = document.querySelectorAll(".category-selected");
 
-  if (categoriasSeleccionadas.length >= 1) {
-    let noExisteEnLaBarra = true;
+  if (selectedCategories.length >= 1) {
+    let nonExistent = true;
 
-    for (const categoriaSeleccionada of categoriasSeleccionadas) {
-      if (categoriaSeleccionada.textContent === textoCategoria) {
-        noExisteEnLaBarra = false;
+    for (const categoriaSeleccionada of selectedCategories) {
+      if (categoriaSeleccionada.textContent === textCategory) {
+        nonExistent = false;
       }
     }
-
-    if (noExisteEnLaBarra) {
-      crearElementoBarraFiltros(textoCategoria);
+    if (nonExistent) {
+      addElementToFiltersBar(textCategory);
     }
   } else {
-    crearElementoBarraFiltros(textoCategoria);
+    addElementToFiltersBar(textCategory);
   }
 };
 
-const estiloCategoriaSeleccionada = (textoCategoria) => {
-  for (const categoria of categoriasCards) {
-    if (categoria.textContent === textoCategoria) {
-      categoria.classList.add("category--selected");
+const styleSelectedCategory = (textCategory) => {
+  for (const category of categories) {
+    if (category.textContent === textCategory) {
+      category.classList.add("category--selected");
     }
   }
 };
 
-const borrarEstiloCategoriaSeleccionada = (textoCategoria) => {
-  for (const categoria of categoriasCards) {
-    if (categoria.textContent === textoCategoria) {
-      categoria.classList.remove("category--selected");
+const deleteStyleSelectedCategory = (textCategory) => {
+  for (const category of categories) {
+    if (category.textContent === textCategory) {
+      category.classList.remove("category--selected");
     }
   }
 };
 
-const manejadorClickCategoria = (event) => {
-  const elemento = event.target;
-  const textoCategoria = elemento.textContent;
+const handlerCategoryClick = (event) => {
+  const element = event.target;
+  const textCategory = element.textContent;
 
-  displayBarraFiltros();
-  evaluacionNoRepetirCategorias(textoCategoria);
-  estiloCategoriaSeleccionada(textoCategoria);
+  displayFiltersBar();
+  checkIfCategoriesExist(textCategory);
+  styleSelectedCategory(textCategory);
 };
 
-for (const categoria of categoriasCards) {
-  categoria.addEventListener("click", manejadorClickCategoria);
+for (const category of categories) {
+  category.addEventListener("click", handlerCategoryClick);
 }
 
-botonClearFiltros.addEventListener("click", () => {
-  contenedorCategoriasBarra.innerHTML = [];
-  barraFiltros.classList.add("--display-none");
+clearFiltersButton.addEventListener("click", () => {
+  containerCategoriesBar.innerHTML = [];
+  filtersBar.classList.add("--display-none");
+  filterElements();
 
-  for (const categoria of categoriasCards) {
-    categoria.classList.remove("category--selected");
+  for (const category of categories) {
+    category.classList.remove("category--selected");
   }
 });
 
-const filtrarElementos = () => {
-  const categoriasFiltro = document.querySelectorAll(".filter__category");
-  const contenedoresCategoriasCards = document.querySelectorAll(
-    ".job-card__categories-list"
-  );
+const filterElements = () => {
+  const filters = [...document.querySelectorAll(".filter__category")];
+  const cards = [...document.querySelectorAll(".job-card__categories-list")];
 
-  if (categoriasFiltro.length === 0) {
-    for (const contenedorActual of contenedoresCategoriasCards) {
-      contenedorActual.parentElement.classList.remove("--display-none");
+  if (filters.length === 0) {
+    for (const card of cards) {
+      card.parentElement.classList.remove("--display-none");
     }
   } else {
-    for (const categoriaFiltro of categoriasFiltro) {
-      for (const contenedorActual of contenedoresCategoriasCards) {
-        console.log(contenedorActual);
-        let hayCoincidencia = false;
-        const categorias = contenedorActual.children;
+    for (const card of cards) {
+      let exists = false;
 
-        for (const categoria of categorias) {
-          if (categoria.textContent === categoriaFiltro.textContent) {
-            hayCoincidencia = true;
+      for (const currentCategory of [...card.children]) {
+        for (const filter of filters) {
+          if (filter.textContent === currentCategory.textContent) {
+            exists = true;
           }
         }
+      }
 
-        if (hayCoincidencia === false) {
-          contenedorActual.parentElement.classList.add("--display-none");
-        } else {
-        }
+      if (exists) {
+        card.parentElement.classList.remove("--display-none");
+      } else {
+        card.parentElement.classList.add("--display-none");
       }
     }
   }
