@@ -20,6 +20,7 @@ const displayFiltersBar = () => {
 const addElementToFiltersBar = (textCategory) => {
   const parentCategory = document.createElement("div");
   parentCategory.classList.add("filter__category");
+  parentCategory.classList.add("animate__fadeInDown");
 
   const childTextCategory = document.createElement("span");
   childTextCategory.classList.add("category");
@@ -117,23 +118,24 @@ const filterElements = () => {
     for (const card of cards) {
       card.parentElement.classList.remove("--display-none");
     }
-  } else {
-    for (const card of cards) {
-      let exists = false;
 
-      for (const currentCategory of [...card.children]) {
-        for (const filter of filters) {
-          if (filter.textContent === currentCategory.textContent) {
-            exists = true;
-          }
-        }
-      }
+    return;
+  }
 
-      if (exists) {
-        card.parentElement.classList.remove("--display-none");
-      } else {
-        card.parentElement.classList.add("--display-none");
-      }
+  for (const card of cards) {
+    const cardCategories = [...card.children];
+    console.log(card);
+
+    const exists = filters.every((f) => {
+      return cardCategories.some((c) => {
+        return c.textContent === f.textContent;
+      });
+    });
+
+    if (exists) {
+      card.parentElement.classList.remove("--display-none");
+    } else {
+      card.parentElement.classList.add("--display-none");
     }
   }
 };
