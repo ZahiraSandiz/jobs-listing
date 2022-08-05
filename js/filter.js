@@ -124,7 +124,6 @@ const filterElements = () => {
 
   for (const card of cards) {
     const cardCategories = [...card.children];
-    console.log(card);
 
     const exists = filters.every((f) => {
       return cardCategories.some((c) => {
